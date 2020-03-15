@@ -1,0 +1,18 @@
+jobs:
+  include:
+    - language: node_js
+      node_js:
+        - 12
+      before_script:
+        - npm run build
+      after_success:
+        - npm i -g codecov
+        - codecov
+    - services:
+        - docker
+      script:
+        - docker build . -t ssr
+    - services:
+        - docker
+      script:
+        - docker build . -f nginx/Dockerfile -t nginx
