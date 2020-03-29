@@ -11,7 +11,10 @@ COPY ./package* ./
 
 RUN npm ci
 
-COPY . .
+COPY app app
+COPY server server
+COPY ./.*ignore ./
+COPY jest.json jest.json
 
 RUN npm run lint
 RUN npm run build
