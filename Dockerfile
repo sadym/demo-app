@@ -16,6 +16,7 @@ COPY server server
 COPY ./.*ignore ./
 COPY ./.*rc ./
 COPY jest.json jest.json
+COPY __tests__ __tests__
 
 RUN npm run lint
 RUN npm run build
