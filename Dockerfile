@@ -14,6 +14,7 @@ RUN npm ci
 COPY app app
 COPY server server
 COPY ./.*ignore ./
+COPY ./.*rc ./
 COPY jest.json jest.json
 
 RUN npm run lint
