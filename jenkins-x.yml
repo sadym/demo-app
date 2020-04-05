@@ -17,5 +17,5 @@ pipelineConfig:
             name: preview-setup
           - sh: jx preview --app $APP_NAME --dir ../..
             name: preview
-          - sh: PREVIEW_URL=https://$REPO_NAME-jx-$REPO_OWNER-$REPO_NAME-pr-$PULL_NUMBER.cloudnativeentrepreneur.dev sh ./load-test.sh
+          - sh: env && PREVIEW_URL=https://$REPO_NAME-jx-$(echo $REPO_OWNER | tr '[:upper:]' '[:lower:]' )-$REPO_NAME-pr-$PULL_NUMBER.cloudnativeentrepreneur.dev sh ./load-test.sh
             name: load-test
