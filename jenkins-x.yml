@@ -4,9 +4,9 @@ pipelineConfig:
   - name: LOAD_TEST_USERS
     value: '500'
   - name: LOAD_TEST_RAMP_DURATION
-    value: 5m
+    value: 3m
   - name: LOAD_TEST_FULL_LOAD_DURATION
-    value: 10m
+    value: 6m
   pipelines:
     pullRequest:
       promote:

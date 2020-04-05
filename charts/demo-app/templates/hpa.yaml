@@ -22,4 +22,11 @@ spec:
     resource:
       name: memory
       targetAverageUtilization: {{ .Values.hpa.memoryTargetAverageUtilization }}
+  - type: Object
+    object:
+      metricName: nodejs_eventloop_lag_seconds
+      target:
+        kind: Namespace
+        name: {{ .Release.Namespace }}
+      targetValue: 40m
 {{- end }}
