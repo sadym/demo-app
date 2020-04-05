@@ -16,8 +16,8 @@ knativeDeploy: false
 # HorizontalPodAutoscaler
 hpa:
   enabled: true
-  minReplicas: 2
-  maxReplicas: 6
+  minReplicas: 3
+  maxReplicas: 10
   cpuTargetAverageUtilization: 80
   memoryTargetAverageUtilization: 80
 
@@ -54,10 +54,10 @@ service:
 resources:
   limits:
     cpu: 1000m
-    memory: 128Mi
+    memory: 75Mi
   requests:
     cpu: 500m
-    memory: 64Mi
+    memory: 50Mi
 probePath: /
 livenessProbe:
   initialDelaySeconds: 60
