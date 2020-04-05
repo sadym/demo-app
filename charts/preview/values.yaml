@@ -4,9 +4,13 @@ expose:
     helm.sh/hook: post-install,post-upgrade
     helm.sh/hook-delete-policy: hook-succeeded
   config:
+    domain: cloudnativeentrepreneur.dev
     exposer: Ingress
-    http: true
-    tlsacme: false
+    http: "false"
+    tlsSecretName: tls-cloudnativeentrepreneur-dev-p
+    tlsacme: "true"
+    urltemplate: '{{.Service}}-{{.Namespace}}.{{.Domain}}'
+  production: true
 
 cleanup:
   Args:
