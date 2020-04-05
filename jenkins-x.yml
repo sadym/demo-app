@@ -2,11 +2,11 @@ buildPack: docker-helm
 pipelineConfig:
   env:
   - name: LOAD_TEST_USERS
-    value: '10'
+    value: '1000'
   - name: LOAD_TEST_RAMP_DURATION
-    value: 1m
+    value: 5m
   - name: LOAD_TEST_FULL_LOAD_DURATION
-    value: 1m
+    value: 10m
   pipelines:
     pullRequest:
       promote:
