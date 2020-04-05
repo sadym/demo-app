@@ -30,10 +30,10 @@ spec:
   #       name: {{ .Release.Namespace }}
   #     targetValue: 10m
   - type: Pods
-      pods:
-        metric:
-          name: nodejs_eventloop_lag_seconds
-        target:
-          type: AverageValue
-          averageValue: 10m
+    pods:
+      metric:
+        name: nodejs_eventloop_lag_seconds
+      target:
+        type: AverageValue
+        averageValue: 10m
 {{- end }}
