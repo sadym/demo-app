@@ -7,8 +7,6 @@ pipelineConfig:
     value: 1m
   - name: LOAD_TEST_FULL_LOAD_DURATION
     value: 1m
-  - name: PREVIEW_URL
-    value: https://$REPO_NAME-jx-$REPO_OWNER-$REPO_NAME-pr-$PULL_NUMBER.cloudnativeentrepreneur.dev
   pipelines:
     pullRequest:
       promote:
@@ -19,5 +17,5 @@ pipelineConfig:
             name: preview-setup
           - sh: jx preview --app $APP_NAME --dir ../..
             name: preview
-          - sh: sh ./load-test.sh
+          - sh: PREVIEW_URL=https://$REPO_NAME-jx-$REPO_OWNER-$REPO_NAME-pr-$PULL_NUMBER.cloudnativeentrepreneur.dev sh ./load-test.sh
             name: load-test
