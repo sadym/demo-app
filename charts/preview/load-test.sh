@@ -44,4 +44,4 @@ $slack_message
 --request POST \
 --url $(safe get secret/staging/k6:slackUrl)
 
-jx step pr comment -c "```\$(cat load-test-output)```" -p $PULL_NUMBER -o $REPO_OWNER -r $REPO_NAME
+jx step pr comment -c "\`\`\``cat load-test-output`\`\`\`" -p $PULL_NUMBER -o $REPO_OWNER -r $REPO_NAME
