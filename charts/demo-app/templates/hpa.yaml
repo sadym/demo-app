@@ -14,14 +14,14 @@ spec:
   minReplicas: {{ .Values.hpa.minReplicas }}
   maxReplicas: {{ .Values.hpa.maxReplicas }}
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      targetAverageUtilization: {{ .Values.hpa.cpuTargetAverageUtilization }}
-  - type: Resource
-    resource:
-      name: memory
-      targetAverageUtilization: {{ .Values.hpa.memoryTargetAverageUtilization }}
+  # - type: Resource
+  #   resource:
+  #     name: cpu
+  #     targetAverageUtilization: {{ .Values.hpa.cpuTargetAverageUtilization }}
+  # - type: Resource
+  #   resource:
+  #     name: memory
+  #     targetAverageUtilization: {{ .Values.hpa.memoryTargetAverageUtilization }}
   - type: Object
     object:
       metricName: nodejs_eventloop_lag_seconds
