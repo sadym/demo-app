@@ -7,6 +7,14 @@ pipelineConfig:
     value: 3m
   - name: LOAD_TEST_FULL_LOAD_DURATION
     value: 6m
+  containerOptions:
+    resources:
+        limits:
+          cpu: 2
+          memory: 2Gi
+        requests:
+          cpu: 2
+          memory: 2Gi
   pipelines:
     pullRequest:
       promote:
