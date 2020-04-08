@@ -33,6 +33,8 @@ pipelineConfig:
         steps:
         - dir: charts/preview
           steps:
+          - sh: env
+            name: debug-env
           - sh: make preview
             name: preview-setup
           - sh: jx preview --app $APP_NAME --dir ../..
