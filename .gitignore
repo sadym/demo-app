@@ -3,3 +3,7 @@ node_modules
 .cache
 dist
 coverage
+**/safe-linux-amd64
+**/load-test-results
+**/load-test-output
+temp.yml
