@@ -5,11 +5,11 @@ pipelineConfig:
     label: jenkins-go
   env:
   - name: LOAD_TEST_USERS
-    value: '500'
+    value: '1000'
   - name: LOAD_TEST_RAMP_DURATION
-    value: 3m
+    value: 5m
   - name: LOAD_TEST_FULL_LOAD_DURATION
-    value: 6m
+    value: 10m
   pipelines:
     pullRequest:
       promote:
