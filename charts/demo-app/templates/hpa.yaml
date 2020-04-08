@@ -25,5 +25,5 @@ spec:
   - type: Pods
     pods:
       metricName: nodejs_eventloop_lag_seconds
-      targetAverageValue: 10m
+      targetAverageValue: {{ .Values.hpa.eventLoopTargetDelay }}
 {{- end }}
