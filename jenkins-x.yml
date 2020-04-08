@@ -1,13 +1,8 @@
 buildPack: docker-helm
 pipelineConfig:
-  containerOptions:
-    resources:
-        limits:
-          cpu: 2
-          memory: 2Gi
-        requests:
-          cpu: 2
-          memory: 2Gi
+  agent:
+    image: gcr.io/jenkinsxio/builder-go
+    label: jenkins-go
   env:
   - name: LOAD_TEST_USERS
     value: '500'
@@ -15,12 +10,6 @@ pipelineConfig:
     value: 3m
   - name: LOAD_TEST_FULL_LOAD_DURATION
     value: 6m
-  - name: MAVEN_OPTS
-    value: -Xms256m -Xmx2048m -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-  - name: _JAVA_OPTIONS
-    value: -XX:+UnlockExperimentalVMOptions -Dsun.zip.disableMemoryMapping=true
-      -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10
-      -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Xms256m -Xmx2048m
   pipelines:
     pullRequest:
       promote:
