@@ -22,4 +22,8 @@ spec:
     resource:
       name: memory
       targetAverageUtilization: {{ .Values.hpa.memoryTargetAverageUtilization }}
+  - type: Pods
+    pods:
+      metricName: nodejs_eventloop_lag_seconds
+      targetAverageValue: {{ .Values.hpa.eventLoopTargetDelay }}
 {{- end }}
