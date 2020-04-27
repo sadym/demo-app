@@ -30,6 +30,12 @@ spec:
         name: gatekeeper-sidecar
         ports:
         - containerPort: {{ .Values.keycloak.proxyPort }}
+        env:
+          - name: KEYCLOAK_CLIENT_SECRET
+            valueFrom:
+            secretKeyRef:
+              name: {{ template "fullname" . }}
+              key: secret
         args:
         # "--resources=uri=/public|white-listed=true",
         # "--resources=uri=/secured|roles=user|methods=GET",
@@ -37,9 +43,9 @@ spec:
         # "--skip-client-id",
         # "--skip-openid-provider-tls-verify",
         # "--no-redirects"
-        - --discovery-url=http://jx-keycloak-http.jx-staging.svc.cluster.local/auth/realms/sso # Note that when KEYCLOAK_HOST runs in Kubernetes too the host's Ingress should have whitelisted internal IPs. I.e., 10.0.0.0/8.
+        - --discovery-url={{ .Values.keycloak.url }}/auth/realms/{{ .Values.keycloak.realm }} # Note that when KEYCLOAK_HOST runs in Kubernetes too the host's Ingress should have whitelisted internal IPs. I.e., 10.0.0.0/8.
         - --client-id=sso
-        - --client-secret={{ .Values.keycloak.clientSecret }}
+        - --client-secret=$(KEYCLOAK_CLIENT_SECRET)
         - --listen=0.0.0.0:{{ .Values.keycloak.proxyPort }} # listen on all interfaces
         - --enable-logging=true
         - --enable-json-logging=true
