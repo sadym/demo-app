@@ -20,7 +20,7 @@ spec:
   ports:
   - port: {{ .Values.service.externalPort }}
 {{- if .Values.keycloakProxyPort }}
-    targetPort: {{ Values.keycloakProxyPort }}
+    targetPort: {{ .Values.keycloakProxyPort }}
 {{- else }}
     targetPort: {{ .Values.service.internalPort }}
 {{- end }}
