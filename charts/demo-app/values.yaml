@@ -44,7 +44,9 @@ canary:
   # Please overwrite the `canary.host` in `values.yaml` in each environment repository (e.g., staging, production)
   host: acme.com
 
-keycloakProxyPort: 3000
+keycloak:
+  proxyPort: 3000
+  clientSecret:
 
 service:
   name: demo-app

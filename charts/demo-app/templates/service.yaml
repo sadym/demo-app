@@ -19,8 +19,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
   - port: {{ .Values.service.externalPort }}
-{{- if .Values.keycloakProxyPort }}
-    targetPort: {{ .Values.keycloakProxyPort }}
+{{- if .Values.keycloak.proxyPort }}
+    targetPort: {{ .Values.keycloak.proxyPort }}
 {{- else }}
     targetPort: {{ .Values.service.internalPort }}
 {{- end }}
