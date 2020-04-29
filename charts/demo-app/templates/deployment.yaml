@@ -33,9 +33,9 @@ spec:
         env:
           - name: KEYCLOAK_CLIENT_SECRET
             valueFrom:
-            secretKeyRef:
-              name: {{ template "fullname" . }}
-              key: secret
+              secretKeyRef:
+                name: {{ template "fullname" . }}
+                key: secret
         args:
         # "--resources=uri=/public|white-listed=true",
         # "--resources=uri=/secured|roles=user|methods=GET",
