@@ -1,11 +1,11 @@
 apiVersion: k8s.kiwigrid.com/v1beta1
 kind: KeycloakClient
 metadata:
-  name: {{ template "fullname" . }}
+  name: {{ .Release.Namespace }}
 spec:
   keycloak: sso
   realm: sso
-  clientId: {{ template "fullname" . }}
+  clientId: {{ .Release.Namespace }}
   clientType: confidential
   directAccessGrantsEnabled: true
   standardFlowEnabled: true
@@ -20,7 +20,7 @@ spec:
       config:
         claim.name: audience
         access.token.claim: "true"
-        included.client.audience: sso
+        included.client.audience: {{ .Release.Namespace }}
     - name: tenant
       protocolMapper: oidc-script-based-protocol-mapper
       config:
@@ -42,3 +42,4 @@ spec:
         access.token.claim: "true"
         jsonType.label: String
         multivalued: "true"
+        usermodel.clientRoleMapping.clientId: {{ .Release.Namespace }}
