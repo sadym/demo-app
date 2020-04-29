@@ -21,3 +21,17 @@ spec:
         claim.name: audience
         access.token.claim: "true"
         included.client.audience: {{ .Release.Namespace }}
+    - name: username
+      protocolMapper: oidc-usermodel-property-mapper
+      config:
+        access.token.claim: "true"
+        claim.name: username
+        jsonType.label: String
+        user.attribute: username
+    - name: roles
+      protocolMapper: oidc-usermodel-client-role-mapper
+      config:
+        access.token.claim: "true"
+        claim.name: roles
+        jsonType.label: String
+        multivalued: "true"
