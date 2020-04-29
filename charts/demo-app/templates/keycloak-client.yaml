@@ -21,25 +21,3 @@ spec:
         claim.name: audience
         access.token.claim: "true"
         included.client.audience: {{ .Release.Namespace }}
-    - name: tenant
-      protocolMapper: oidc-script-based-protocol-mapper
-      config:
-        claim.name: tenant
-        access.token.claim: "true"
-        jsonType.label: String
-        script: "realm.getName();"
-    - name: username
-      protocolMapper: oidc-usermodel-property-mapper
-      config:
-        claim.name: username
-        access.token.claim: "true"
-        jsonType.label: String
-        user.attribute: username
-    - name: roles
-      protocolMapper: oidc-usermodel-client-role-mapper
-      config:
-        claim.name: roles
-        access.token.claim: "true"
-        jsonType.label: String
-        multivalued: "true"
-        usermodel.clientRoleMapping.clientId: {{ .Release.Namespace }}
