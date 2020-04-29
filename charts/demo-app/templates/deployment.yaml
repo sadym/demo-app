@@ -42,7 +42,7 @@ spec:
         - --resources=uri=/css|white-listed=true
         - --resources=uri=/metrics|white-listed=true
         - --resources=uri=/favicon.ico|white-listed=true
-        - --resources=uri=/about|roles=demo-app|methods=GET
+        - --resources=uri=/about
         - --discovery-url={{ .Values.keycloak.url }}/auth/realms/{{ .Values.keycloak.realm }}
         - --client-id={{ .Release.Namespace }}
         - --client-secret=$(KEYCLOAK_CLIENT_SECRET)
