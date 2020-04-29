@@ -3,17 +3,14 @@ kind: KeycloakClient
 metadata:
   name: {{ .Release.Namespace }}
 spec:
-  keycloak: sso
-  realm: sso
+  keycloak: {{ .Values.keycloakClient.keycloak }}
+  realm: {{ .Values.keycloakClient.realm }}
   clientId: {{ .Release.Namespace }}
   clientType: confidential
   directAccessGrantsEnabled: true
   standardFlowEnabled: true
   implicitFlowEnabled: false
-  redirectUris:
-    - 'https://*'
-  defaultRoles:
-    - demo-app
+  redirectUris: {{ .Values.keycloakClient.redirectUris }}
   mapper:
     - name: audience
       protocolMapper: oidc-audience-mapper

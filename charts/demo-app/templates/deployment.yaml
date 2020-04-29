@@ -50,6 +50,8 @@ spec:
         - --enable-logging=true
         - --enable-json-logging=true
         - --upstream-url=http://127.0.0.1:{{ .Values.service.internalPort }} # To connect with the main container's port
+        resources:
+{{ toYaml .Values.gatekeeper.resources | indent 12 }}
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
