@@ -48,9 +48,6 @@ keycloak:
   proxyPort: 3000
   clientSecret:
   url: https://jx-keycloak-http-jx-staging.cloudnativeentrepreneur.dev # no trailing slash
-  realm: sso
-
-keycloakClient:
   keycloak: sso
   realm: sso
   redirectUris:

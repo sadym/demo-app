@@ -3,14 +3,14 @@ kind: KeycloakClient
 metadata:
   name: {{ .Release.Namespace }}
 spec:
-  keycloak: {{ .Values.keycloakClient.keycloak }}
-  realm: {{ .Values.keycloakClient.realm }}
+  keycloak: {{ .Values.keycloak.keycloak }}
+  realm: {{ .Values.keycloak.realm }}
   clientId: {{ .Release.Namespace }}
   clientType: confidential
   directAccessGrantsEnabled: true
   standardFlowEnabled: true
   implicitFlowEnabled: false
-  redirectUris: {{ .Values.keycloakClient.redirectUris }}
+  redirectUris: {{ .Values.keycloak.redirectUris }}
   mapper:
     - name: audience
       protocolMapper: oidc-audience-mapper
