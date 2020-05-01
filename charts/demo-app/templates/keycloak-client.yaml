@@ -41,3 +41,10 @@ spec:
         claim.name: roles
         jsonType.label: String
         multivalued: "true"
+    - name: tenant
+      protocolMapper: oidc-script-based-protocol-mapper
+      config:
+        claim.name: tenant
+        access.token.claim: "true"
+        jsonType.label: String
+        script: "realm.getName();"
