@@ -10,7 +10,16 @@ spec:
   directAccessGrantsEnabled: true
   standardFlowEnabled: true
   implicitFlowEnabled: false
-  redirectUris: {{ .Values.keycloak.redirectUris }}
+  redirectUris:
+{{- if .Values.keycloak.redirectUris.allowAll }}
+    - https://*
+{{- else }}
+{{- if .Values.keycloak.redirectUris.includeNamespace }}
+    - https://{{ .Values.keycloak.redirectUris.serviceName }}-{{ .Release.Namespace}}.{{ .Values.keycloak.redirectUris.domain }}
+{{- else }}
+    - https://{{ .Values.keycloak.redirectUris.serviceName }}.{{ .Values.keycloak.redirectUris.domain }}
+{{- end }}
+{{- end }}
   mapper:
     - name: audience
       protocolMapper: oidc-audience-mapper

@@ -1,10 +1,13 @@
 
+domain: &domain cloudnativeentrepreneur.dev
+serviceName: &serviceName demo-app
+
 expose:
   Annotations:
     helm.sh/hook: post-install,post-upgrade
     helm.sh/hook-delete-policy: hook-succeeded
   config:
-    domain: cloudnativeentrepreneur.dev
+    domain: *domain
     exposer: Ingress
     http: "false"
     tlsSecretName: tls-cloudnativeentrepreneur-dev-p
@@ -26,3 +29,8 @@ preview:
     pullPolicy: IfNotPresent
   keycloak:
     clientSecret: vault:staging/auth/keycloak:clientSecret
+    redirectUris:
+      allowAll: false
+      includeNamespace: true
+      domain: *domain
+      serviceName: *serviceName

@@ -51,7 +51,10 @@ keycloak:
   keycloak: sso
   realm: sso
   redirectUris:
-    - 'https://*'
+    allowAll: true
+    domain: changeme
+    includeNamespace: false
+    serviceName: changeme
 
 gatekeeper:
   resources:
