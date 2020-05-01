@@ -57,10 +57,7 @@ gatekeeper:
   resources:
     limits:
       cpu: 100m
-      memory: 100Mi
-    requests:
-      cpu: 50m
-      memory: 50Mi
+      memory: 128Mi
 
 service:
   name: demo-app
