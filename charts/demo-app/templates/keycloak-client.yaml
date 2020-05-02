@@ -1,11 +1,11 @@
 apiVersion: k8s.kiwigrid.com/v1beta1
 kind: KeycloakClient
 metadata:
-  name: {{ .Release.Namespace }}
+  name: {{ template "keycloakclient" . }}
 spec:
   keycloak: {{ .Values.keycloak.keycloak }}
   realm: {{ .Values.keycloak.realm }}
-  clientId: {{ .Release.Namespace }}
+  clientId: {{ template "keycloakclient" . }}
   clientType: confidential
   directAccessGrantsEnabled: true
   standardFlowEnabled: true
@@ -28,7 +28,7 @@ spec:
       config:
         claim.name: audience
         access.token.claim: "true"
-        included.client.audience: {{ .Release.Namespace }}
+        included.client.audience: {{ template "keycloakclient" . }}
     - name: username
       protocolMapper: oidc-usermodel-property-mapper
       config:
