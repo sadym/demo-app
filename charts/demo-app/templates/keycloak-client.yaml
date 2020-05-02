@@ -15,8 +15,10 @@ spec:
     - https://*
 {{- else }}
 {{- if .Values.keycloak.redirectUris.includeNamespace }}
+    - https://{{ .Values.keycloak.redirectUris.serviceName }}-{{ .Release.Namespace}}.{{ .Values.keycloak.redirectUris.domain }}/*
     - https://{{ .Values.keycloak.redirectUris.serviceName }}-{{ .Release.Namespace}}.{{ .Values.keycloak.redirectUris.domain }}
 {{- else }}
+    - https://{{ .Values.keycloak.redirectUris.serviceName }}.{{ .Values.keycloak.redirectUris.domain }}/*
     - https://{{ .Values.keycloak.redirectUris.serviceName }}.{{ .Values.keycloak.redirectUris.domain }}
 {{- end }}
 {{- end }}
