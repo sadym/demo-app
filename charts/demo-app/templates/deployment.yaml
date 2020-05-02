@@ -26,6 +26,32 @@ spec:
 {{- end }}
     spec:
       containers:
+      - image: quay.io/keycloak/keycloak-gatekeeper:9.0.3
+        name: gatekeeper-sidecar
+        ports:
+        - containerPort: {{ .Values.keycloak.proxyPort }}
+        env:
+          - name: KEYCLOAK_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Namespace }}
+                key: secret
+        args:
+        - --resources=uri=/|white-listed=true
+        - --resources=uri=/dist|white-listed=true
+        - --resources=uri=/css|white-listed=true
+        - --resources=uri=/metrics|white-listed=true
+        - --resources=uri=/favicon.ico|white-listed=true
+        - --resources=uri=/about
+        - --discovery-url={{ .Values.keycloak.url }}/auth/realms/{{ .Values.keycloak.realm }}
+        - --client-id={{ .Release.Namespace }}
+        - --client-secret=$(KEYCLOAK_CLIENT_SECRET)
+        - --listen=0.0.0.0:{{ .Values.keycloak.proxyPort }} # listen on all interfaces
+        - --enable-logging=true
+        - --enable-json-logging=true
+        - --upstream-url=http://127.0.0.1:{{ .Values.service.internalPort }} # To connect with the main container's port
+        resources:
+{{ toYaml .Values.gatekeeper.resources | indent 12 }}
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}

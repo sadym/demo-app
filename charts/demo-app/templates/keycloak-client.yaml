@@ -1,0 +1,46 @@
+apiVersion: k8s.kiwigrid.com/v1beta1
+kind: KeycloakClient
+metadata:
+  name: {{ .Release.Namespace }}
+spec:
+  keycloak: {{ .Values.keycloak.keycloak }}
+  realm: {{ .Values.keycloak.realm }}
+  clientId: {{ .Release.Namespace }}
+  clientType: confidential
+  directAccessGrantsEnabled: true
+  standardFlowEnabled: true
+  implicitFlowEnabled: false
+  redirectUris:
+{{- if .Values.keycloak.redirectUris.allowAll }}
+    - https://*
+{{- else }}
+{{- if .Values.keycloak.redirectUris.includeNamespace }}
+    - https://{{ .Values.keycloak.redirectUris.serviceName }}-{{ .Release.Namespace}}.{{ .Values.keycloak.redirectUris.domain }}/*
+    - https://{{ .Values.keycloak.redirectUris.serviceName }}-{{ .Release.Namespace}}.{{ .Values.keycloak.redirectUris.domain }}
+{{- else }}
+    - https://{{ .Values.keycloak.redirectUris.serviceName }}.{{ .Values.keycloak.redirectUris.domain }}/*
+    - https://{{ .Values.keycloak.redirectUris.serviceName }}.{{ .Values.keycloak.redirectUris.domain }}
+{{- end }}
+{{- end }}
+  mapper:
+    - name: audience
+      protocolMapper: oidc-audience-mapper
+      config:
+        claim.name: audience
+        access.token.claim: "true"
+        included.client.audience: {{ .Release.Namespace }}
+    - name: username
+      protocolMapper: oidc-usermodel-property-mapper
+      config:
+        access.token.claim: "true"
+        claim.name: username
+        jsonType.label: String
+        user.attribute: username
+    - name: roles
+      protocolMapper: oidc-usermodel-client-role-mapper
+      config:
+        access.token.claim: "true"
+        claim.name: roles
+        jsonType.label: String
+        multivalued: "true"
+

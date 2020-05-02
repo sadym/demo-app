@@ -44,6 +44,24 @@ canary:
   # Please overwrite the `canary.host` in `values.yaml` in each environment repository (e.g., staging, production)
   host: acme.com
 
+keycloak:
+  proxyPort: 3000
+  clientSecret:
+  url: https://auth-jx-staging.cloudnativeentrepreneur.dev # no trailing slash
+  keycloak: keycloak
+  realm: members
+  redirectUris:
+    allowAll: true
+    domain: changeme
+    includeNamespace: false
+    serviceName: changeme
+
+gatekeeper:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+
 service:
   name: demo-app
   type: ClusterIP
@@ -54,11 +72,11 @@ service:
     fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
 resources:
   limits:
-    cpu: 400m
-    memory: 256Mi
+    cpu: 800m
+    memory: 80Mi
   requests:
-    cpu: 200m
-    memory: 128Mi
+    cpu: 400m
+    memory: 50Mi
 probePath: /
 livenessProbe:
   initialDelaySeconds: 60
