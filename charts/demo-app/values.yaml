@@ -46,7 +46,6 @@ canary:
 
 keycloak:
   proxyPort: 3000
-  clientSecret:
   url: https://auth-jx-staging.cloudnativeentrepreneur.dev # no trailing slash
   keycloak: keycloak
   realm: members
