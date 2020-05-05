@@ -3,7 +3,7 @@ kind: KeycloakClient
 metadata:
   name: {{ template "keycloakclient" . }}
 spec:
-  keycloak: {{ .Values.keycloak.keycloak }}-{{ .Release.Namespace }}
+  keycloak: {{ .Values.keycloak.keycloak }}
   realm: {{ .Values.keycloak.realm }}
   clientId: {{ template "keycloakclient" . }}
   clientType: confidential
