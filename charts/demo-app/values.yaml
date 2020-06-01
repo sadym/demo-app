@@ -71,10 +71,10 @@ service:
     fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
 resources:
   limits:
-    cpu: 800m
+    cpu: "1"
     memory: 80Mi
   requests:
-    cpu: 400m
+    cpu: 5m
     memory: 50Mi
 probePath: /
 livenessProbe:
