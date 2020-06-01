@@ -74,7 +74,7 @@ resources:
     cpu: "1"
     memory: 80Mi
   requests:
-    cpu: 5m
+    cpu: 10m
     memory: 50Mi
 probePath: /
 livenessProbe:
